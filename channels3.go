@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 	"strconv"
+	"strings"
 )
 
 func makeCakeAndSend(cs chan string, count int) {
@@ -18,12 +19,33 @@ func receiveCakeAndPack(cs chan string) {
 		fmt.Println("Packing received cake: ", s)
 	}
 }
+func receiveMoney(money chan int) {
+	for temp := range money {
+		println("receive money:", temp)
+	}
+}
+func emitMoney(money chan int, time int) {
+	for i := 0; i < time; i++ {
+		println("emmit money:", i)
+		money<-i
+	}
+}
 
 func main() {
+	testChan := make(chan int)
+	go emitMoney(testChan, 5)
+	go receiveMoney(testChan)
 	cs := make(chan string)
 	go makeCakeAndSend(cs, 5)
 	go receiveCakeAndPack(cs)
 
-	du,_ := time.ParseDuration("3s")
-	time.Sleep(du)
+	du, _ := time.ParseDuration("3s")
+	result := strings.Split("a  b c", " ")//严格用分隔符分隔
+	result=strings.Fields("a   b c")//用空格分隔，
+	for a:= range result{
+		println("one:",result[a])
+
+	}
+
+		time.Sleep(du)
 }

@@ -7,7 +7,9 @@ type myTime struct {
     time.Time // 匿名字段
 }
 func (t myTime) first3Chars() string {
-    return t.Weekday().String()[0:3]
+//    return t.Weekday().String()[0:3]
+	return t.Weekday().String()
+//	return t.Time.String()
 }
 func main() {
     m := myTime{}

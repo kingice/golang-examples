@@ -22,7 +22,7 @@ func main() {
     q := Square{side:5}
     shapes := [...]Shaper{r, q}
     fmt.Println("Looping through shapes for area ...")
-    for n, _ := range shapes {
-        fmt.Printf("Shape detail: %v , and is area is: %d\n", shapes[n], shapes[n].Area()) 
+    for _, shape := range shapes {
+        fmt.Printf("Shape detail: %v , and is area is: %d\n", shape, shape.Area())
     }
 }
